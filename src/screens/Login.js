@@ -1,13 +1,27 @@
 import React from "react";
-import { useState } from "react";
+import { useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   let navigate = useNavigate();
+  // useEffect(() => {
+  //   window.gapi.load('auth2', () => {
+  //     window.gapi.auth2.init({
+  //       client_id: '147882014855-3832v5d3qoi2rdgqutqme655ia02p65v.apps.googleusercontent.com'
+  //     });
+  //   });
+  // },[])
+  // const handleGoogleSignIn = () => {
+  //   window.gapi.auth2.getAuthInstance().signIn().then(googleUser => {
+  //     const idToken = googleUser.getAuthResponse().id_token;
+  //     console.log(idToken);
+  //   });
+  // }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5000/api/loginuser", {
@@ -71,9 +85,11 @@ function Login() {
           <button type="submit" className="btn btn-primary">
             Login
           </button>
+          {/* <button onClick={handleGoogleSignIn} className=" m-3 btn btn-danger">Continue with Google</button> */}
           <Link to="/signup" className="m-3 btn btn-danger">
             I'm a new User
           </Link>
+
         </form>
       </div>
     </>
