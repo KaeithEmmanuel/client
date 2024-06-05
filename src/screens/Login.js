@@ -1,27 +1,17 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../css/Login.css";
+import Nav from '../components/Nav'
+import Footer from "../components/Footer";
 
 function Login() {
-  
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   let navigate = useNavigate();
-  // useEffect(() => {
-  //   window.gapi.load('auth2', () => {
-  //     window.gapi.auth2.init({
-  //       client_id: '147882014855-3832v5d3qoi2rdgqutqme655ia02p65v.apps.googleusercontent.com'
-  //     });
-  //   });
-  // },[])
-  // const handleGoogleSignIn = () => {
-  //   window.gapi.auth2.getAuthInstance().signIn().then(googleUser => {
-  //     const idToken = googleUser.getAuthResponse().id_token;
-  //     console.log(idToken);
-  //   });
-  // }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("http://localhost:5000/api/loginuser", {
@@ -44,14 +34,18 @@ function Login() {
       alert("Enter Valid Credentials");
     }
   };
+
   const onChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
+
   return (
     <>
-      <div className="container">
+    <Nav />
+    <div className="login-container d-flex justify-content-center align-items-center">
+      <div className="login-box p-4 shadow">
+        <h2 className="text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
-          
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -82,16 +76,16 @@ function Login() {
               onChange={onChange}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary w-100">
             Login
           </button>
-          {/* <button onClick={handleGoogleSignIn} className=" m-3 btn btn-danger">Continue with Google</button> */}
-          <Link to="/signup" className="m-3 btn btn-danger">
+          <Link to="/signup" className="btn btn-danger w-100 mt-3">
             I'm a new User
           </Link>
-
         </form>
       </div>
+    </div>
+    <Footer />
     </>
   );
 }

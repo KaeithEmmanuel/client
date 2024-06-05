@@ -36,7 +36,6 @@ export default function MyOrder() {
       <div>
         <Navbar />
       </div>
-
       <div className="container">
         <div className="row">
           {orderData !== {}
@@ -104,9 +103,9 @@ export default function MyOrder() {
             : ""}
         </div>
       </div>
-
-      <Footer />
+      <div className="">
+        <Footer />
+      </div>
     </div>
   );
 }
-
