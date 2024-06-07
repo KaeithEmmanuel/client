@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css";
 import Nav from '../components/Nav'
 import Footer from "../components/Footer";
+import { GoogleLogin } from 'react-google-login'
+
+const clientId = "147882014855-3832v5d3qoi2rdgqutqme655ia02p65v.apps.googleusercontent.com"
+
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -38,6 +42,13 @@ function Login() {
   const onChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
+  const onSuccess=(res)=>{
+    console.log('Login Success: currentUser:', res.profileObj);
+  }
+
+  const onFailure=(res)=>{
+    console.log('Login Failed: currentUser:', res.profileObj);
+  }
 
   return (
     <>
@@ -82,6 +93,14 @@ function Login() {
           <Link to="/signup" className="btn btn-danger w-100 mt-3">
             I'm a new User
           </Link>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Login with Google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+          />
         </form>
       </div>
     </div>

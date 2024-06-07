@@ -11,6 +11,7 @@ function Nav() {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("authtoken");
   const [cartView, setCartView] = useState(false);
+ 
 
   const handleLogout = () => {
     localStorage.removeItem("authtoken");
@@ -20,7 +21,6 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-success fixed-top">
       <div className="container-fluid">
-        
         <button
           className="navbar-toggler"
           type="button"
@@ -39,6 +39,7 @@ function Nav() {
                 Home
               </Link>
             </li>
+            
             {authToken && (
               <li className="nav-item">
                 <Link className="nav-link text-white" to="/myorders">
@@ -72,7 +73,10 @@ function Nav() {
                   <Cart />
                 </Modal>
               ) : null}
-              <div className="btn bg-white text-danger mx-2" onClick={handleLogout}>
+              <div
+                className="btn bg-white text-danger mx-2"
+                onClick={handleLogout}
+              >
                 Logout
               </div>
             </>
