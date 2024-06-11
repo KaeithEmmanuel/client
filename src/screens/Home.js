@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../components/Nav";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import "../css/Home.css";
 //import Carousel from "../components/Carousel";
-
 function Home() {
   // Define state variables for food categories and food items
   const [search, setSearch] = useState("");

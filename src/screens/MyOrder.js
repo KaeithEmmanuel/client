@@ -36,7 +36,7 @@ export default function MyOrder() {
       <div>
         <Navbar />
       </div>
-      <div className="container">
+      <div className="container" style={{marginTop:'72px'}}>
         <div className="row">
           {orderData !== {}
             ? Array(orderData).map((data) => {
